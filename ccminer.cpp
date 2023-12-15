@@ -1871,15 +1871,15 @@ static void *miner_thread(void *userdata)
 			if (opt_algo == ALGO_DECRED || opt_algo == ALGO_WILDKECCAK /* getjob */)
 				work_done = true; // force "regen" hash
 			while (!work_done && time(NULL) >= (g_work_time + opt_scantime)) {
-				usleep(100*1000);
+				//usleep(100*1000);
 				if (sleeptime > 4) {
 					extrajob = true;
 					break;
 				}
 				sleeptime++;
 			}
-			if (sleeptime && opt_debug && !opt_quiet)
-				applog(LOG_DEBUG, "sleeptime: %u ms", sleeptime*100);
+			//if (sleeptime && opt_debug && !opt_quiet)
+			//	applog(LOG_DEBUG, "sleeptime: %u ms", sleeptime*100);
 			//nonceptr = (uint32_t*) (((char*)work.data) + wcmplen);
 			pthread_mutex_lock(&g_work_lock);
 			extrajob |= work_done;
