@@ -2624,9 +2624,9 @@ wait_stratum_url:
 			if (stratum_gen_work(&stratum, &g_work))
 				g_work_time = time(NULL);
 			if (stratum.job.clean) {
-				static uint32_t last_block_height;
-				if ((!opt_quiet || !firstwork_time) && stratum.job.height != last_block_height) {
-					last_block_height = stratum.job.height;
+				static char* last_job_id = "";
+				if ((!opt_quiet || !firstwork_time) && strcmp(stratum.job.job_id, last_job_id) != 0) {
+					last_job_id = stratum.job.job_id;
 					if (net_diff > 0.)
 						applog(LOG_BLUE, "%s block %d, diff %.3f", algo_names[opt_algo],
 							stratum.job.height, net_diff);
@@ -3448,7 +3448,7 @@ int main(int argc, char *argv[])
 	printf("*************************************************************\n");	
 
 		printf("Originally based on Christian Buchner and Christian H. project\n");
-		printf("Adapted to Verus by Monkins1010\n");
+		printf("Adapted to Verus by Monkins1010, edited by romslf\n");
 	    printf("Goto https://wiki.verus.io/#!index.md for mining setup guides. \n");
 		printf("Git repo located at: " PACKAGE_URL " \n\n");
 	
